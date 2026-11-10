@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: api-deployment
+  namespace: estudos
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: api
+
+  template:
+    metadata:
+      labels:
+        app: api
+
+    spec:
+      containers:
+      - name: api
+
+        image: produtos-api:v1
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 8000
+
+        envFrom:
+        - secretRef:
+            name: api-secret

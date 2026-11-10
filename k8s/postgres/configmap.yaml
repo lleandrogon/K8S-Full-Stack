@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: postgres-config
+  namespace: estudos
+
+data:
+  init.sql: |
+    CREATE TABLE produtos (
+      id SERIAL PRIMARY KEY,
+      nome VARCHAR(100),
+      preco NUMERIC(10,2)
+    );
+
+    INSERT INTO produtos (nome, preco)
+    VALUES
+      ('Notebook', 3500.00),
+      ('Mouse', 100.00),
+      ('Teclado', 250.00);
